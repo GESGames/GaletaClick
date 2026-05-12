@@ -295,3 +295,72 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init);
+
+// ─── SISTEMA DE PRESTIGI (Enganxa a partir de l'última línia de script.js) ───────────────────
+
+function calcularNivellsPrestigiPossibles() {
+  if (gameState.totalCookies < 1000000) return 0;
+  return Math.floor(gameState.totalCookies / 1000000);
+}
+
+function obrirMenuPrestigi() {
+  const modal = document.getElementById('modal-prestigi');
+  const txtGuanyat = document.getElementById('prestigi-guanyat');
+  const txtNouMult = document.getElementById('nou-multiplicador');
+  const txtAvis = document.getElementById('avis-prestigi');
+  const btnAscendir = document.getElementById('btn-executar-ascensio');
+
+  const nivellsTotalsPossibles = calcularNivellsPrestigiPossibles();
+  const nivellsA_Guanyar = Math.max(0, nivellsTotalsPossibles - gameState.prestigeLevel);
+
+  txtGuanyat.textContent = `+${nivellsA_Guanyar}`;
+  
+  const futurMultiplicador = 1.0 + ((gameState.prestigeLevel + nivellsA_Guanyar) * 0.05);
+  txtNouMult.textContent = `×${futurMultiplicador.toFixed(2)}`;
+
+  if (nivellsA_Guanyar > 0) {
+    txtAvis.textContent = "⚠️ En ascendir, perdràs les teves galetes actuals i edificis, de fons es manté!";
+    txtAvis.className = "text-xs text-amber-400 font-medium mb-6";
+    btnAscendir.disabled = false;
+    btnAscendir.classList.remove('opacity-50', 'cursor-not-allowed');
+  } else {
+    txtAvis.textContent = "❌ Necessites arribar a 1M de galetes totals de fons per desbloquejar el Prestigi.";
+    txtAvis.className = "text-xs text-rose-400 font-medium mb-6";
+    btnAscendir.disabled = true;
+    btnAscendir.classList.add('opacity-50', 'cursor-not-allowed');
+  }
+
+  modal.classList.remove('hidden');
+  setTimeout(() => modal.classList.remove('opacity-0'), 10);
+}
+
+function tancarMenuPrestigi() {
+  const modal = document.getElementById('modal-prestigi');
+  modal.classList.add('opacity-0');
+  setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+function executarAscensio() {
+  const nivellsTotalsPossibles = calcularNivellsPrestigiPossibles();
+  const nivellsA_Guanyar = Math.max(0, nivellsTotalsPossibles - gameState.prestigeLevel);
+
+  if (nivellsA_Guanyar <= 0) return;
+
+  gameState.prestigeLevel += nivellsA_Guanyar;
+  gameState.prestigeMultiplier = 1.0 + (gameState.prestigeLevel * 0.05);
+
+  gameState.cookies = 0;
+  
+  for (const key in gameState.buildings) {
+    gameState.buildings[key].count = 0;
+  }
+
+  recalculateCosts();
+  recalculateCps();
+  saveGame();
+  saveScoreToSupabase();
+  updateUI();
+  tancarMenuPrestigi();
+  
+  showToast(`✨ HAS ASCENDIT! Nivell de Prestigi: ${gameState.prestigeLevel} ✨`);
+}
