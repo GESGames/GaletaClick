@@ -746,6 +746,9 @@ function init() {
   usernameInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('btn-save-username').click();
   });
+
+  // Guardar en sortir
+  window.addEventListener('beforeunload', () => {
     saveGame();
     saveScoreToSupabase();
   });
