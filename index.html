@@ -64,6 +64,22 @@
         </div>
       </div>
 
+      <div class="mt-6 space-y-4 bg-purple-950/10 border border-purple-500/10 p-4 rounded-2xl">
+          <h2 class="text-xs uppercase tracking-wider text-purple-400 font-bold mb-2">Prestigi</h2>
+          <div class="flex justify-between items-center border-b border-purple-950/30 pb-2">
+            <span class="text-sm text-slate-400">Nivell Actual</span>
+            <span id="prestige-level" class="font-mono font-bold text-purple-300">0</span>
+          </div>
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-sm text-slate-400">Multiplicador</span>
+            <span id="prestige-mult" class="font-mono font-bold text-purple-400">×1.00</span>
+          </div>
+          
+          <button onclick="obrirMenuPrestigi()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs py-2 px-3 rounded-xl shadow-lg shadow-purple-500/20 active:scale-95 transition-transform">
+            ✨ Ascendir / Prestigi
+          </button>
+        </div>
+
       <div class="text-xs text-slate-500 font-mono mt-4 text-center md:text-left">
         GESGames &copy; 2026<br>Candy Dark Clicker v2.0
       </div>
@@ -183,6 +199,37 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+
+  <div id="modal-prestigi" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-slate-900 border border-purple-500/30 p-6 rounded-3xl max-w-md w-full mx-4 shadow-2xl shadow-purple-500/10 text-center">
+      <span class="text-5xl">🌌</span>
+      <h2 class="text-2xl font-black bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent mt-3">Ascensió de Prestigi</h2>
+      <p class="text-sm text-slate-400 mt-2">Reinicia les teves galetes i edificis actuals a canvi d'un poder diví permanent.</p>
+      
+      <div class="my-6 p-4 bg-purple-950/20 border border-purple-500/10 rounded-2xl space-y-2 text-left font-mono text-sm">
+        <div class="flex justify-between">
+          <span class="text-slate-400">Nivells a guanyar:</span>
+          <span id="prestigi-guanyat" class="text-purple-300 font-bold">+0</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-400">Nou Multiplicador:</span>
+          <span id="nou-multiplicador" class="text-indigo-400 font-bold">×1.00</span>
+        </div>
+      </div>
+
+      <p id="avis-prestigi" class="text-xs text-rose-400 font-medium mb-6">Necessites un mínim de 1,000,000 de galetes totals per guanyar el teu primer nivell de prestigi.</p>
+
+      <div class="flex gap-3">
+        <button onclick="tancarMenuPrestigi()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-xl text-sm transition-colors">
+          Tornar al joc
+        </button>
+        <button id="btn-executar-ascensio" onclick="executarAscensio()" disabled class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-2.5 rounded-xl text-sm opacity-50 cursor-not-allowed transition-all">
+          Ascendir!
+        </button>
+      </div>
     </div>
   </div>
 
