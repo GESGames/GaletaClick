@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GaletaClic 🍪</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR ESQUERRA: Estadístiques -->
+  <aside class="panel panel-left">
+    <div class="stats-header">
+      <h2>📊 Estadístiques</h2>
+    </div>
+
+    <div class="stat-block">
+      <span class="stat-label">Galetes totals</span>
+      <span class="stat-value" id="stat-total">0</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-label">Galetes/segon</span>
+      <span class="stat-value cps" id="stat-cps">0.0</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-label">Galetes/clic</span>
+      <span class="stat-value" id="stat-cpc">1</span>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- LLIGA -->
+    <div class="league-section">
+      <h3>🏆 Lliga</h3>
+      <div class="league-badge" id="league-badge">
+        <span class="league-icon" id="league-icon">🥉</span>
+        <span class="league-name" id="league-name">Bronze</span>
+      </div>
+      <div class="league-progress-bar">
+        <div class="league-progress-fill" id="league-fill"></div>
+      </div>
+      <p class="league-info" id="league-info">0 / 1,000 galetes setmanals</p>
+      <div class="leagues-list">
+        <div class="league-tier" id="tier-bronze">🥉 Bronze &lt; 1.000</div>
+        <div class="league-tier" id="tier-silver">🥈 Plata &lt; 10.000</div>
+        <div class="league-tier" id="tier-gold">🥇 Or &lt; 100.000</div>
+        <div class="league-tier" id="tier-diamond">💎 Diamant &lt; 1M</div>
+        <div class="league-tier" id="tier-legend">👑 Llegenda ≥ 1M</div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PRESTIGI -->
+    <div class="prestige-section">
+      <h3>✨ Prestigi</h3>
+      <p class="prestige-info">Nivell actual: <strong id="prestige-level">0</strong></p>
+      <p class="prestige-info">Multiplicador: <strong id="prestige-mult">x1.00</strong></p>
+      <button class="btn-prestige" id="btn-prestige" disabled>
+        ✨ Activar Prestigi<br>
+        <small id="prestige-cost">(Cal 1M galetes)</small>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CENTRE: Galeta principal -->
+  <main class="game-center">
+    <div class="cookie-wrapper">
+      <div class="cookie-glow"></div>
+      <button class="cookie-btn" id="cookie-btn" aria-label="Clica la galeta">
+        🍪
+      </button>
+    </div>
+
+    <div class="score-display">
+      <div class="score-number" id="score">0</div>
+      <div class="score-label">galetes</div>
+    </div>
+
+    <div class="floating-container" id="floating-container"></div>
+
+    <!-- RÀNQUING -->
+    <div class="leaderboard-section">
+      <h3>🏅 Rànquing Global</h3>
+
+      <div class="username-row">
+        <label for="username-input">El teu nom:</label>
+        <input type="text" id="username-input" maxlength="20" placeholder="El teu nom de jugador" />
+        <button id="btn-save-username">💾 Desar</button>
+      </div>
+
+      <table class="leaderboard-table">
+        <thead>
+          <tr><th>#</th><th>Jugador</th><th>Lliga</th><th>Galetes</th></tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <tr><td colspan="4" style="text-align:center;color:var(--text-dim);padding:16px">Carregant...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- SIDEBAR DRETA: Botiga -->
+  <aside class="panel panel-right">
+    <div class="shop-header">
+      <h2>🏪 Botiga</h2>
+      <p class="shop-subtitle">Millores i potenciadors</p>
+    </div>
+
+    <div class="shop-items" id="shop-items">
+      <!-- Generat per JS -->
+    </div>
+
+    <hr class="divider"/>
+    <div class="upgrades-section">
+      <h3>⬆️ Millores</h3>
+      <div id="upgrades-list">
+        <!-- Generat per JS -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
