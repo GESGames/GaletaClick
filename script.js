@@ -1,8 +1,9 @@
 // ─── CONFIGURACIÓ DE SUPABASE ───────────────────────────────────────
 const SUPABASE_URL = "https://orbbidmhbgiluidmkamw.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yYmJpZG1oYmdpbHVpZG1rYW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDIzNjIsImV4cCI6MjA5NDE3ODM2Mn0.gNOML7xb7_tS2O64HOpbxTE5w3UbXiX9eWiCgKE7UC8v";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yYmJpZG1oYmdpbHVpZG1rYW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDIzNjIsImV4cCI6MjA5NDE3ODM2Mn0.gNOML7xb7_tS2O64HOpbxTE5w3UbXiX9eWiCgKE7UC8"; // <-- ENGANXA AQUÍ LA TEVA CLAU ANON DE SUPABASE
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ─── ESTAT DEL JOC (GAME STATE) ─────────────────────────────────────
 let gameState = {
   cookies: 0,
   totalCookies: 0,
