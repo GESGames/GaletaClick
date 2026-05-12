@@ -1,6 +1,6 @@
 // ─── CONFIGURACIÓ DE SUPABASE ───────────────────────────────────────
 const SUPABASE_URL = "https://orbbidmhbgiluidmkamw.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndibWZ5bWJ5dmN0anR0Y2xnYnlvIiwicm9sZSI6ImFub25fMTIwNyIsImlhdCI6MTczNzQ3MTE5MiwiZXhwIjoyMDUzMDQ3MTkyfQ.89-63r3i_N_W6Y9e-eP26_96283y662232-232-232";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yYmJpZG1oYmdpbHVpZG1rYW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2MDIzNjIsImV4cCI6MjA5NDE3ODM2Mn0.gNOML7xb7_tS2O64HOpbxTE5w3UbXiX9eWiCgKE7UC8v";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let gameState = {
